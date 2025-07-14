@@ -2,7 +2,6 @@ package com.bulkupload.service;
 import com.bulkupload.model.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +13,13 @@ public class ProducerService {
 
     @Value("${spring.kafka.topic.driver-location}")
     private String topic;
-    public void sendStudent(Student student)
+    public void sendStudent(Student student,int orgId)
     {
         System.out.println("Student inside ProducerService" + student.toString());
+        Integer partition = orgId%10;
+        String key = String.valueOf(orgId);
+        System.out.println("Producing student to partition [" + partition + "], key [" + key + "]");
+
         kafkaTemplate.send(topic,student);
     }
 
