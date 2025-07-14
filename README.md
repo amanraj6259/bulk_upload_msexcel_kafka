@@ -250,6 +250,15 @@ Kafka-UI will wait for Kafka to start first.
 
 ---
 
-💡 **Bonus Tip:** If you'd like, I can draw a simple diagram for this setup or help you add persistence (data saved on disk)!
+kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic student-topic --from-beginning
 
-Do you want that? 🚀
+kafka-topics.bat --describe --topic student-topic --bootstrap-server localhost:9092
+
+kafka-topics.bat --list --bootstrap-server localhost:9092
+
+kafka-topics.bat --create  --bootstrap-server localhost:9092  --topic student-topic --partitions 10
+
+docker-compose down
+
+docker-compose up
+
